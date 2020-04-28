@@ -5,6 +5,6 @@ export default [
     meta: {
       title: '主页'
     },
-    component: () => import('@/view/home/index')
+    component: () => import('@/views/home/index')
   }
 ];
