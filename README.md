@@ -30,3 +30,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 4.默认加载时间处理dayjs支持
 5.项目常用配置在config目录
 6.默认使用axios作为http模块
+7.使用.editorconfig统一代码风格 空格 tab 缩进
+8.添加svgIcon模块，方便svg icon的调用
+9.样式文件模块化
