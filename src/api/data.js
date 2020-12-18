@@ -1,7 +1,7 @@
-import axios from '@/libs/api.request';
+import request from '@/libs/request';
 
 export const getUserInfo = () => {
-  return axios.request({
+  return request({
     url: '',
     method: 'get'
   });
