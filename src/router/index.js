@@ -1,12 +1,32 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import routes from './routers';
+import { constantRoutes } from './routers';
+
+// fix vue-router NavigationDuplicated
+const VueRouterPush = Router.prototype.push;
+Router.prototype.push = function push(location) {
+  return VueRouterPush.call(this, location).catch(err => err);
+};
+const VueRouterReplace = Router.prototype.replace;
+Router.prototype.replace = function replace(location) {
+  return VueRouterReplace.call(this, location).catch(err => err);
+};
 
 Vue.use(Router);
 
-const router = new Router({
-  routes,
-  mode: 'history'
+const createRouter = () => new Router({
+  mode: 'hash',
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes,
+  base: '/'
 });
 
+const router = createRouter();
+
+export function resetRouter() {
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher; // reset router
+}
+
 export default router;
+

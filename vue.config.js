@@ -5,9 +5,17 @@ const resolve = dir => {
 };
 
 module.exports = {
-  publicPath: './',
-  // 如果你不需要使用eslint，把lintOnSave设为false即可
-  lintOnSave: true,
+  publicPath: '/',
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `
+          @import "~@/styles/variables.scss";
+          @import "~@/styles/mixins.scss";
+        `
+      }
+    }
+  },
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
@@ -30,6 +38,8 @@ module.exports = {
       })
       .end();
   },
+  // 如果你不需要使用eslint，把lintOnSave设为false即可
+  lintOnSave: true,
   // 设为false打包时不生成.map文件
   productionSourceMap: false
 };
