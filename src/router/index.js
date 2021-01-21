@@ -15,10 +15,9 @@ Router.prototype.replace = function replace(location) {
 Vue.use(Router);
 
 const createRouter = () => new Router({
-  mode: 'hash',
+  mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes,
-  base: '/'
+  routes: constantRoutes
 });
 
 const router = createRouter();
